@@ -1,0 +1,21 @@
+
+<form method="POST" role="form" [formGroup]="bookForm">
+    <legend>BOOKS</legend>
+    <div class="item">
+        <label for="fname"> Name<span>*</span></label>
+        <input type="text" placeholder="name" formControlName="name" />
+        <div *ngIf="bookForm.controls['name'].dirty && bookForm.controls['name'].invalid">
+            <p class="errormsg"  *ngIf="bookForm.controls['name'].dirty && bookForm.controls['name'].hasError('required')">Please Enter the Name </p>
+            <p class="errormsg"  *ngIf="bookForm.controls['name'].dirty && bookForm.controls['name'].hasError('maxlength')">not more than 8 leters </p>
+            <p class="errormsg"  *ngIf="bookForm.controls['name'].dirty && bookForm.controls['name'].hasError('minlength')">not less than 4 leters </p>
+            <p class="errormsg"  *ngIf="bookForm.controls['name'].dirty && bookForm.controls['name'].hasError('pattern')">no number allowed</p>
+
+
+        </div>
+    </div>
+    <div class="item">
+        <label for="activity">Author <span>*</span></label>
+        <input type="text" placeholder="author" formControlName="author" />
+    </div>
+    <button type="button" [disabled]="!bookForm.valid" (click)="add()">Add Book</button>
+</form>
